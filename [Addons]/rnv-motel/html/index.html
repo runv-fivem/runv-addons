@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <template v-if="open">
+        <div class="band">
+            <svg class="bg" viewBox="0 0 1920 505" preserveAspectRatio="none">
+                <rect width="1920" height="505" fill="#000"/>
+                <polygon points="0,0 1034,0 731,505 0,505" fill="#c6fe39"/>
+                <polygon points="1039,0 1920,0 1920,505 736,505" fill="#262722"/>
+                <polygon points="1040,0 1063,0 955,155" fill="#c6fe39" stroke="#000" stroke-width="3"/>
+                <polygon points="964,190 970,190 911,290 905,293" fill="#c6fe39"/>
+                <polygon points="1779,0 1803,0 1652,212" fill="#000"/>
+                <polygon points="1922,0 1920,505 1479,505" fill="#000"/>
+                <polygon points="1642,305 1650,305 1606,372 1600,372" fill="#000"/>
+                <polygon points="1516,392 1522,392 1462,458 1452,458" fill="#000"/>
+                <polygon points="1540,395 1561,395 1476,505 1430,505" fill="#000"/>
+            </svg>
+            <img class="art" src="img/bank-ui.png">
+            <div class="title"><span class="ghost">PAY YOUR DEBT</span>PAY YOUR DEBT</div>
+            <div class="box head">BANK BALANCE: <span class="val">{{ money(balance) }}</span></div>
+            <div class="box list amount">{{ money(debt) }}</div>
+        </div>
+
+        <div class="bar">
+            <div class="btn cancel" @click="cancel">CANCEL</div>
+            <div class="btn ok" :class="{ off: balance < debt }" @click="confirm">PAY {{ money(debt) }}</div>
+        </div>
+    </template>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

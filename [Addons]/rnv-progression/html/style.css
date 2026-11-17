@@ -1,0 +1,67 @@
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Semibold.otf'); font-weight: 600; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Extrabold_Italic.otf'); font-weight: 800; font-style: italic; }
+
+/* 1rem = 10px at 1080p */
+html { font-size: calc(100vh / 108); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { width: 100vw; height: 100vh; overflow: hidden; background: transparent; font-family: 'BerninoCond', sans-serif; color: #fff; }
+[v-cloak] { display: none; }
+
+.screen { position: absolute; inset: 0; }
+.key { min-width: 2rem; height: 2.2rem; padding: 0 0.5rem; background: #161616; border: 0.1rem solid #4a4946; font-size: 1.2rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+
+.title { position: absolute; left: 3.6rem; top: 4.2rem; font-size: 6.6rem; font-weight: 800; font-style: italic; line-height: 1; }
+.track { position: absolute; left: 3.6rem; top: 11.2rem; font-size: 5rem; font-weight: 800; font-style: italic; color: #b9b6b0; line-height: 1; }
+.track span { color: #c4fb32; margin-left: 0.8rem; }
+
+/* tattoo list: tiles x 38-196, 108px step; thresholds at x 239; bar at x 216 */
+.list { position: absolute; left: 3.8rem; top: 18rem; bottom: 8rem; width: 30rem; overflow-y: auto; overflow-x: hidden; }
+.list::-webkit-scrollbar { width: 0; }
+.row { position: relative; height: 10.8rem; display: flex; align-items: center; }
+.tile { position: relative; width: 15.8rem; height: 10.3rem; background: #1a1a1a; border: 0.2rem solid #2a2927; border-radius: 0.3rem; cursor: pointer; }
+.tile.selected { border-color: #c4fb32; }
+.tile .state { position: absolute; right: 1.4rem; top: 50%; margin-top: -1rem; width: 2rem; height: 2rem; }
+.tile .lock { fill: #8e8b86; }
+.tile .check { fill: #c4fb32; }
+.threshold { margin-left: 4.3rem; font-size: 2.6rem; font-weight: 700; }
+.bar { position: absolute; left: 17.8rem; top: 0; width: 0.8rem; background: rgba(255, 255, 255, 0.08); height: var(--h, 100%); }
+.bar .fill { position: absolute; left: 0; right: 0; bottom: 0; background: #c4fb32; }
+
+.points { position: absolute; right: 3.4rem; top: 4.4rem; height: 3.6rem; padding: 0 1rem; background: rgba(22, 22, 22, 0.85); font-size: 1.9rem; font-weight: 700; display: flex; align-items: center; }
+
+.gender { position: absolute; right: 3.8rem; top: 12.2rem; width: 12.8rem; height: 5rem; border-radius: 2.5rem; background: #9a9894; display: flex; }
+.gender .side { width: 6.4rem; height: 5rem; border-radius: 2.5rem; display: flex; align-items: center; justify-content: center; }
+.gender .side svg { width: 3rem; height: 3rem; fill: #f0ece8; }
+.gender .side.active { background: #c5fa35; }
+.gender .side.active svg { fill: #000; }
+
+/* right panel: x 1340-1816 */
+.detail { position: absolute; right: 10.4rem; top: 45.8rem; width: 48rem; text-align: right; }
+.detail .name { font-size: 3.6rem; font-weight: 800; font-style: italic; }
+.detail .desc { margin-top: 1rem; font-size: 1.65rem; font-weight: 600; line-height: 2.1rem; }
+.detail .warn { margin: 2.6rem 0 0 auto; width: 30rem; padding: 0.6rem 1rem; background: #b5383b; font-size: 1.5rem; font-weight: 600; text-align: center; line-height: 1.9rem; }
+.detail .tattoo { margin: 0.7rem 0 0 auto; width: 30rem; height: 4.1rem; background: #111; display: flex; align-items: center; padding-left: 1.6rem; cursor: pointer; }
+.detail .tattoo .text { flex: 1; text-align: center; margin-right: 3.6rem; font-size: 2rem; font-weight: 700; }
+.detail .tattoo b { color: #e8443d; }
+.detail .tattoo.ready { background: #c4fb31; color: #000; }
+.detail .tattoo.ready b { color: #000; }
+
+.bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 5.4rem; background: #161616; display: flex; align-items: center; padding-left: 3.8rem; }
+.btn { height: 3.2rem; padding: 0 1rem; background: #2a2826; display: flex; align-items: center; font-size: 1.6rem; font-weight: 600; cursor: pointer; }
+.btn .key { margin-right: 0.8rem; }
+
+/* claimed card: dark slanted panel on the right */
+.card { position: absolute; top: 0; right: 0; bottom: 0; width: 70rem; background: #1e1e1e; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%); padding-right: 4rem; text-align: right; }
+.ctrack { margin-top: 41rem; font-size: 3rem; font-weight: 800; font-style: italic; color: #c4fb32; }
+.cname { margin-top: 1.6rem; font-size: 8rem; font-weight: 800; font-style: italic; line-height: 1; }
+.cdesc { margin: 2.6rem 0 0 auto; width: 48rem; font-size: 1.65rem; font-weight: 600; line-height: 2.1rem; }
+.cbtns { position: absolute; right: 4rem; bottom: 3.8rem; display: flex; }
+.cbtns .more { width: 27.8rem; height: 4.5rem; margin-right: 3rem; background: #111; color: #8e8b86; font-size: 1.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.cbtns .more b { color: #e8443d; margin-left: 0.5rem; }
+.cbtns .great { width: 28rem; height: 4.5rem; background: #c4fb31; color: #000; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; padding-left: 1.4rem; cursor: pointer; }
+.cbtns .great .key { margin-right: 8.4rem; background: #6c7a43; border: 0; color: #c4fb31; }
+
+/* RNV UI rule: buttons and boxes get a very small radius; hover = white button, black text, smooth */
+.detail .tattoo, .btn, .cbtns .great { border-radius: 0.3rem; transition: background-color 0.2s ease, color 0.2s ease; }
+.detail .tattoo:not(.off):hover, .btn:not(.off):hover, .cbtns .great:not(.off):hover { background: #fff; color: #000; }

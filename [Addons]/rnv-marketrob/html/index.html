@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+html { font-size: calc(100vh / 108); }
+body { margin: 0; overflow: hidden; background: transparent; }
+
+/* NPC eye meter: red ring around a white disc with an eye */
+.eye { position: absolute; width: 4.6rem; height: 4.6rem; margin: -2.3rem 0 0 -2.3rem; }
+.eye svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.eye .disc { position: absolute; left: 0.85rem; top: 0.85rem; width: 2.9rem; height: 2.9rem; border-radius: 50%; background: #f4f4f4;
+  display: flex; align-items: center; justify-content: center; }
+.eye .disc img { width: 2rem; height: 2rem; }
+.eye.call { animation: blink 0.5s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0.35; } }
+</style>
+</head>
+<body>
+<div id="eyes"></div>
+<script>
+const CIRC = 2 * Math.PI * 20;
+const eyesEl = document.getElementById('eyes');
+function eyeHtml(e) {
+  return '<div class="eye' + (e.call ? ' call' : '') + '" style="left:' + (e.x * 100) + '%;top:' + (e.y * 100) + '%">' +
+    '<svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="rgba(20,20,20,.55)" stroke-width="4"/>' +
+    '<circle cx="23" cy="23" r="20" fill="none" stroke="#ff3b3b" stroke-width="4" stroke-linecap="round" stroke-dasharray="' + CIRC +
+    '" stroke-dashoffset="' + (CIRC * (1 - e.v)) + '" transform="rotate(-90 23 23)"/></svg>' +
+    '<div class="disc"><img src="icons/visibility.svg"></div></div>';
+}
+window.addEventListener('message', ev => {
+  const d = ev.data;
+  if (d.action === 'eyes') {
+    eyesEl.innerHTML = d.list.map(eyeHtml).join('');
+  }
+});
+</script>
+</body>
+</html>

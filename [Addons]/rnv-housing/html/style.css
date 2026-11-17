@@ -1,0 +1,60 @@
+@font-face { font-family: 'Akrobat'; src: url('fonts/Akrobat-Bold.woff'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Semibold.otf'); font-weight: 600; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold_Italic.otf'); font-weight: 700; font-style: italic; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Extrabold_Italic.otf'); font-weight: 800; font-style: italic; }
+
+/* 1rem = 10px at 1080p */
+html { font-size: calc(100vh / 108); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { width: 100vw; height: 100vh; overflow: hidden; background: transparent; font-family: 'BerninoCond', sans-serif; color: #e8e6e2; }
+[v-cloak] { display: none; }
+
+/* band y 246-769 */
+.band { position: absolute; left: 0; top: 24.6rem; width: 100%; height: 52.4rem; overflow: hidden; }
+.bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.desert { position: absolute; left: 0; top: 8.4rem; height: 43.9rem; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12rem, #000 70rem, transparent 95rem); }
+.char { position: absolute; left: 64.7rem; bottom: 0; height: 47rem; -webkit-mask-image: linear-gradient(to right, #000 72%, transparent 78%); }
+/* pyramid labels */
+.rank { position: absolute; display: flex; align-items: center; height: 0; }
+.rt { font-size: 2.1rem; font-weight: 800; font-style: italic; color: #e4e4e2; white-space: nowrap; transform: scaleX(0.75); transform-origin: left center; }
+.rank .ico { filter: invert(1); }
+.rank.r1 { left: 50rem; width: 31.6rem; top: 14.8rem; flex-direction: column; }
+.rank.r1 .rt { margin-top: 2.4rem; transform-origin: center; }
+.ico.gov { display: block; flex: none; position: relative; width: 5.4rem; height: 5.4rem; margin-top: -2.7rem; filter: invert(1); }
+.ico.gov img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.ico.gov .crown { left: 32%; top: 34%; width: 36%; height: 32%; filter: invert(1); }
+.rank.r2 { left: 49.4rem; top: 28.4rem; }
+.rank.r2 .ico { width: 4.4rem; margin-right: 1rem; }
+.rank.r3 { left: 42.5rem; top: 36.8rem; }
+.rank.r3 .ico { width: 3.8rem; margin-right: 1.1rem; }
+.rank.r4 { left: 35.6rem; top: 45.2rem; }
+.rank.r4 .ico { width: 3.8rem; margin-right: 1rem; filter: none; opacity: 0.8; }
+.rank.r4 .rt { color: #3b0a1d; }
+.title { position: absolute; left: 9.4rem; top: 4.8rem; font-size: 7rem; font-weight: 800; font-style: italic; color: #111; white-space: nowrap; transform: scaleX(0.7); transform-origin: left top; }
+.ghost { position: absolute; left: 3rem; top: 2.4rem; color: transparent; -webkit-text-stroke: 0.1rem rgba(0, 0, 0, 0.12); }
+
+/* right panel x 1027-1669 */
+.phead { position: absolute; left: 102.7rem; top: 7.3rem; width: 64.2rem; height: 7.5rem; padding-left: 2.2rem; background: #2b2926; display: flex; align-items: center; font-size: 3.4rem; font-weight: 800; font-style: italic; }
+.pink { margin-left: 0.8rem; color: #cd2066; }
+.pbody { position: absolute; left: 102.7rem; top: 15.8rem; width: 64.2rem; height: 29.4rem; padding: 2.2rem 2.2rem 0; background: #2b2926; clip-path: polygon(0 0, 100% 0, 100% 13.3rem, 50rem 100%, 0 100%); }
+.sub { font-size: 1.6rem; font-weight: 700; color: #81827f; margin-bottom: 0.6rem; }
+.sub.cond { margin-top: 1.6rem; }
+.line { font-size: 1.6rem; font-weight: 600; line-height: 2rem; }
+.g { color: #c3e05a; }
+.check .mark { margin-right: 0.8rem; color: #c7da68; }
+.check .mark.no { color: #e0323a; }
+.req { margin-top: 1.4rem; font-size: 1.5rem; font-weight: 600; color: #81827f; }
+.tile { position: relative; margin-top: 0.6rem; width: 7.1rem; height: 7.5rem; border: 0.2rem solid #a5c84a; background: #3a3a2c; }
+.tile img { position: absolute; left: 8%; top: 8%; width: 84%; height: 84%; object-fit: contain; }
+
+/* bottom bar y 769-833, RENT button x 780-1140 */
+.bar { position: absolute; left: 0; top: 76.9rem; width: 100%; height: 6.4rem; background: #161616; }
+.btn { position: absolute; left: 78rem; top: 1.3rem; width: 36rem; height: 4.1rem; background: #ebe7e2; color: #2b2a28; font-family: 'Akrobat', sans-serif; letter-spacing: 0.05rem; font-size: 1.9rem; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.key { position: absolute; left: 1.5rem; width: 2.2rem; height: 2.4rem; background: #c9c5bf; color: #2b2a28; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+.back { position: absolute; left: 3.7rem; top: 103.1rem; height: 3.4rem; display: flex; align-items: center; font-size: 1.7rem; font-weight: 700; cursor: pointer; }
+.back .key.esc { position: static; width: auto; padding: 0 0.6rem; margin-right: 0.9rem; background: #3f332b; color: #e8e6e2; }
+
+/* RNV UI rule: buttons and boxes get a very small radius; hover = white button, black text, smooth */
+.btn { border-radius: 0.3rem; transition: background-color 0.2s ease, color 0.2s ease; }
+.btn:not(.off):hover { background: #fff; color: #000; }

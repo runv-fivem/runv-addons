@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <template v-if="open">
+        <div class="reply" @click="next">
+            <span class="key">E</span>
+            <div class="box">{{ reply }}</div>
+        </div>
+        <div class="subtitle">
+            <span class="speaker">{{ speaker }}:</span><span class="line">{{ line }}</span>
+        </div>
+    </template>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

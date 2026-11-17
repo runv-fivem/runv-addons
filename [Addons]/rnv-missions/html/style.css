@@ -1,0 +1,17 @@
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Semibold.otf'); font-weight: 600; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); font-weight: 700; }
+
+/* 1rem = 10px at 1080p */
+html { font-size: calc(100vh / 108); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { width: 100vw; height: 100vh; overflow: hidden; background: transparent; font-family: 'BerninoCond', sans-serif; color: #fff; }
+[v-cloak] { display: none; }
+
+/* reply: E chip x 1199-1215, box x 1224-1536 / y 590-641 */
+.reply { position: absolute; left: 119.9rem; top: 59rem; display: flex; align-items: center; cursor: pointer; }
+.reply .key { width: 1.7rem; height: 1.8rem; margin-right: 0.8rem; background: #1c110e; border: 0.1rem solid #4a4946; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.reply .box { width: 31.2rem; min-height: 5.1rem; padding: 0.6rem 2rem 0.6rem 3.8rem; background: rgba(40, 38, 34, 0.55); border: 0.2rem solid #c4fb32; border-radius: 0.4rem; font-size: 1.9rem; font-weight: 700; line-height: 2.1rem; display: flex; align-items: center; text-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.6); }
+
+/* subtitle: centered block at the bottom (x 485-1430, lines at y 924 / 952) */
+.subtitle { position: absolute; left: 50%; bottom: 11.4rem; width: 95rem; margin-left: -47.5rem; display: flex; font-size: 2.5rem; font-weight: 700; line-height: 2.8rem; text-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.8); }
+.subtitle .speaker { flex: none; margin-right: 0.8rem; color: #c8e63c; }

@@ -1,0 +1,54 @@
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Extrabold_Italic.otf'); font-weight: 800; font-style: italic; }
+@font-face { font-family: 'Bernino'; src: url('fonts/Bernino_Sans.otf'); font-weight: 400; }
+
+/* 1rem = 10px at 1080p */
+html { font-size: calc(100vh / 108); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { width: 100vw; height: 100vh; overflow: hidden; background: transparent; font-family: 'BerninoCond', sans-serif; color: #fff; }
+[v-cloak] { display: none; }
+
+.map { position: absolute; inset: 0; }
+.surface { position: absolute; inset: 0; cursor: grab; }
+
+/* diamond with the place picture + small white pointer under it (anchored at the region center) */
+.marker { position: absolute; transform: translate(-50%, -100%); display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.diamond { width: 5.6rem; height: 5.6rem; transform: rotate(45deg); border: 0.3rem solid #fff; overflow: hidden; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.4); }
+.diamond img { width: 145%; height: 145%; margin: -22% 0 0 -22%; transform: rotate(-45deg); object-fit: cover; }
+.marker.sel .diamond { border-color: #c8fa34; }
+.pointer { margin-top: 1.8rem; width: 0; height: 0; border-left: 0.9rem solid transparent; border-right: 0.9rem solid transparent; border-top: 1rem solid #fff; }
+
+/* place popup */
+.pop { position: absolute; width: 51.8rem; background: #3e3c3a; box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.45); }
+.pop-head { height: 9.6rem; padding-left: 3rem; background: #33302d; font-size: 4.3rem; font-weight: 800; font-style: italic; line-height: 9.6rem; }
+.pop-img { display: block; width: 100%; height: 18.1rem; object-fit: cover; }
+.pop-body { padding: 2.6rem 2.8rem 5rem 3rem; }
+.pop-body p { font-family: 'Bernino', sans-serif; font-size: 1.75rem; line-height: 2.56rem; color: #f2f2f0; }
+.pop-btn { position: relative; margin-top: 2.6rem; height: 5.4rem; border-radius: 0.3rem; background: #c8fa34; color: #1a2a05; font-size: 2.3rem; font-weight: 700; line-height: 5.4rem; text-align: center; cursor: pointer; }
+.pop-key { position: absolute; left: 1.75rem; top: 1.5rem; height: 2.4rem; padding: 0 0.6rem; border-radius: 0.2rem; background: #85ad21; color: #e4ff9a; font-size: 1.3rem; line-height: 2.4rem; }
+.pop-foot { height: 6.3rem; background: #302e2a; display: flex; align-items: center; justify-content: flex-end; padding-right: 3.5rem; }
+.chip { height: 4rem; padding: 0 2rem; background: #1d1d1b; display: flex; align-items: center; font-size: 2.1rem; font-weight: 700; cursor: pointer; }
+.key { height: 2.4rem; min-width: 2.4rem; padding: 0 0.4rem; margin-right: 1rem; border: 0.1rem solid #9a9a98; font-size: 1.3rem; line-height: 2.2rem; text-align: center; }
+
+/* bottom cards (picture, name bottom-left, diamond badge top-center), a bit bigger so the
+   longest name fits */
+.cards { position: absolute; left: 0; right: 0; top: 95.6rem; display: flex; justify-content: center; }
+.card { position: relative; width: 17.4rem; height: 8.4rem; margin: 0 1.2rem; border-radius: 0.3rem; cursor: pointer;
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.55); outline: 0.2rem solid transparent; transition: outline-color 0.2s ease; }
+.card img { width: 100%; height: 100%; object-fit: cover; border-radius: 0.3rem; display: block; }
+.card::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; border-radius: 0 0 0.3rem 0.3rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)); }
+.card.sel, .card:hover { outline-color: #fff; }
+.card .label { position: absolute; z-index: 1; left: 1rem; bottom: 0.7rem; font-size: 2.5rem; font-weight: 700; line-height: 1;
+  letter-spacing: 0.03rem; white-space: nowrap; transform: scaleX(0.86); transform-origin: left bottom; text-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.8); }
+.card .badge { position: absolute; z-index: 1; left: 50%; top: -1.8rem; width: 3.5rem; height: 3.5rem; margin-left: -1.75rem;
+  transform: rotate(45deg); background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.4); }
+.card .badge.home { background: #c8fa34; }
+.card .badge svg { width: 2.1rem; height: 2.1rem; transform: rotate(-45deg); fill: #111; }
+
+/* back key bottom-left (x 36-72, y 1033-1050) */
+.back { position: absolute; left: 3.6rem; top: 103.3rem; width: 3.6rem; height: 1.7rem; background: rgba(30, 25, 15, 0.75); font-size: 1.4rem; line-height: 1.7rem; text-align: center; cursor: pointer; }
+
+/* RNV UI rule: buttons and boxes get a very small radius; hover = white button, black text, smooth */
+.pop-btn, .chip { border-radius: 0.3rem; transition: background-color 0.2s ease, color 0.2s ease; }
+.pop-btn:not(.off):hover, .chip:not(.off):hover { background: #fff; color: #000; }

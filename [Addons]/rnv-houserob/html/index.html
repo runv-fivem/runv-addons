@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: 'BCondXB'; src: url('fonts/Bernino_Sans_Condensed_Extrabold_Italic.otf'); }
+@font-face { font-family: 'BCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); }
+html { font-size: calc(100vh / 108); }
+body { margin: 0; overflow: hidden; background: transparent; }
+
+/* ALARM GOES OFF IN banner */
+#alarm { display: none; position: absolute; left: 50%; top: 10.5rem; transform: translateX(-50%); height: 4.4rem; width: 37rem;
+  background: rgba(36, 34, 31, 0.86); border-radius: 0.3rem; align-items: center; justify-content: space-between; padding: 0 1.4rem 0 2rem; box-sizing: border-box; }
+#alarm .txt { font: 2.3rem 'BCondXB'; color: #f2f0ea; letter-spacing: 0.02rem; transform: scaleX(0.9); transform-origin: left center; white-space: nowrap; }
+#alarm .watch { position: relative; width: 3.4rem; height: 3.6rem; }
+#alarm .watch .knob { position: absolute; left: 50%; top: 0; width: 0.9rem; height: 0.45rem; margin-left: -0.45rem; background: #161616; border-radius: 0.1rem; }
+#alarm .watch svg { position: absolute; left: 0; top: 0.3rem; width: 3.4rem; height: 3.4rem; }
+#alarm .watch .num { position: absolute; left: 0; top: 0.3rem; width: 3.4rem; height: 3.4rem; display: flex; align-items: center; justify-content: center;
+  font: 2rem 'BCondXB'; color: #ff3d3d; }
+
+/* NPC eye meter: red ring around a white disc with an eye */
+.eye { position: absolute; width: 4.6rem; height: 4.6rem; margin: -2.3rem 0 0 -2.3rem; }
+.eye svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.eye .disc { position: absolute; left: 0.85rem; top: 0.85rem; width: 2.9rem; height: 2.9rem; border-radius: 50%; background: #f4f4f4;
+  display: flex; align-items: center; justify-content: center; }
+.eye .disc img { width: 2rem; height: 2rem; }
+.eye.call { animation: blink 0.5s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0.35; } }
+</style>
+</head>
+<body>
+<div id="alarm">
+  <div class="txt">ALARM GOES OFF IN</div>
+  <div class="watch">
+    <div class="knob"></div>
+    <svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="15" fill="#161616" stroke="#3a3833" stroke-width="2.2"/>
+      <circle id="arc" cx="17" cy="17" r="15" fill="none" stroke="#ff3d3d" stroke-width="2.2" stroke-dasharray="94.25" stroke-dashoffset="0" transform="rotate(-90 17 17)"/></svg>
+    <div class="num" id="num">10</div>
+  </div>
+</div>
+<div id="eyes"></div>
+<script>
+const CIRC = 2 * Math.PI * 20;
+const eyesEl = document.getElementById('eyes');
+function eyeHtml(e) {
+  return '<div class="eye' + (e.call ? ' call' : '') + '" style="left:' + (e.x * 100) + '%;top:' + (e.y * 100) + '%">' +
+    '<svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="rgba(20,20,20,.55)" stroke-width="4"/>' +
+    '<circle cx="23" cy="23" r="20" fill="none" stroke="#ff3b3b" stroke-width="4" stroke-linecap="round" stroke-dasharray="' + CIRC +
+    '" stroke-dashoffset="' + (CIRC * (1 - e.v)) + '" transform="rotate(-90 23 23)"/></svg>' +
+    '<div class="disc"><img src="icons/visibility.svg"></div></div>';
+}
+window.addEventListener('message', ev => {
+  const d = ev.data;
+  if (d.action === 'eyes') {
+    eyesEl.innerHTML = d.list.map(eyeHtml).join('');
+  } else if (d.action === 'alarm') {
+    const box = document.getElementById('alarm');
+    if (d.left == null) { box.style.display = 'none'; return; }
+    box.style.display = 'flex';
+    document.getElementById('num').textContent = d.left;
+    document.getElementById('arc').setAttribute('stroke-dashoffset', 94.25 * (1 - d.left / d.total));
+  }
+});
+</script>
+</body>
+</html>

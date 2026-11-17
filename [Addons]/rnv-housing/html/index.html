@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <template v-if="open">
+        <div class="band">
+            <!-- background: lime, slanted grey panel, black slashes -->
+            <svg class="bg" viewBox="0 0 1920 523" preserveAspectRatio="none">
+                <rect width="1920" height="523" fill="#000"/>
+                <polygon points="0,0 1121,0 677,523 0,523" fill="#c4fb2e"/>
+                <polygon points="1128,0 1920,0 1920,523 684,523" fill="#2b2926"/>
+                <polygon points="1132,0 1158,0 1040,140" fill="#c4fb2e" stroke="#000" stroke-width="3"/>
+                <polygon points="1028,185 1034,185 990,240 984,243" fill="#c4fb2e"/>
+                <polygon points="1772,0 1795,0 1672,185" fill="#000"/>
+                <polygon points="1925,0 1920,523 1465,523" fill="#000"/>
+                <polygon points="1455,452 1462,452 1442,478 1436,478" fill="#000"/>
+                <polygon points="1480,458 1515,458 1462,523 1412,523" fill="#000"/>
+            </svg>
+            <img class="desert" src="img/desert.png">
+            <!-- rank pyramid -->
+            <svg class="bg" viewBox="0 0 1920 523" preserveAspectRatio="none">
+                <polygon points="660,52 808,236 509,236" fill="#161713"/>
+                <polygon points="508,246 790,246 790,318 445,318" fill="#161713"/>
+                <polygon points="434,333 765,333 765,403 377,403" fill="#161713"/>
+                <polygon points="363,416 775,416 775,487 307,487" fill="#fb1a78"/>
+            </svg>
+            <div class="rank r1"><span class="ico gov"><img src="icons/hive.svg"><img class="crown" src="icons/crown.svg"></span><span class="rt">SHADOW GOVERNOR</span></div>
+            <div class="rank r2"><img class="ico" src="icons/hive.svg"><span class="rt">DISTRICT OWNER</span></div>
+            <div class="rank r3"><img class="ico" src="icons/hexagon.svg"><span class="rt">SETTLEMENT OWNER</span></div>
+            <div class="rank r4"><img class="ico" src="icons/person_pin.svg"><span class="rt">SETTLEMENT RESIDENT</span></div>
+            <img class="char" src="img/char.png">
+            <div class="title"><span class="ghost">PLOT OWNER</span>PLOT OWNER</div>
+            <div class="phead">PLOT <span class="pink">{{ name }}</span></div>
+            <div class="pbody">
+                <div class="sub">BENEFITS</div>
+                <div class="line">- Your own land plot and ability to <span class="g">place structures</span> on it</div>
+                <div class="line">- Ability to purchase <span class="g">personal vehicles and workbenches</span></div>
+                <div class="line">- Access to the <span class="g">Black Market</span> and cash <span class="g">laundering</span></div>
+                <div class="sub cond">CONDITIONS</div>
+                <div class="line check"><span class="mark" :class="{ no: has < 1 }">{{ has >= 1 ? '✔' : '✖' }}</span>Land Plot Title ({{ has }}/1)</div>
+                <div class="req">Required item:</div>
+                <div class="tile"><img :src="image"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div class="btn" @click="rent">RENT</div>
+        </div>
+        <div class="back" @click="cancel"><span class="key esc">ESC</span>BACK</div>
+    </template>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

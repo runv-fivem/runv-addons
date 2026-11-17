@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="map" v-show="open">
+        <div class="surface" @pointerdown="down"></div>
+
+        <div v-for="p in places" :key="'m' + p.id" class="marker" :class="{ sel: sel === p.id }"
+             :style="markerStyle(p.id)" @click="select(p.id)">
+            <div class="diamond"><img :src="p.iconImage"></div>
+            <div class="pointer"></div>
+        </div>
+
+        <div class="pop" v-if="place" :style="popStyle">
+            <div class="pop-head">{{ place.label }}</div>
+            <img class="pop-img" :src="place.image">
+            <div class="pop-body">
+                <p>{{ place.text }}</p>
+                <div class="pop-btn" v-if="place.travel" @click="travel(place.id)"><span class="pop-key">ENTER</span>ENTER</div>
+            </div>
+            <div class="pop-foot"><div class="chip" @click="select(null)"><span class="key">ESC</span>CLOSE</div></div>
+        </div>
+
+        <div class="cards">
+            <div v-for="p in cards" :key="'c' + p.id" class="card" :class="{ sel: sel === p.id }" @click="select(p.id)">
+                <img :src="p.image">
+                <div class="label">{{ p.card }}</div>
+                <div class="badge" :class="p.badge">
+                    <svg viewBox="0 0 24 24"><path :d="icons[p.badge]"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="back" @click="back">&#x27F5;</div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

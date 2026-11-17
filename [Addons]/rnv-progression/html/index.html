@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="screen" v-if="open">
+        <div class="title">AUTHORITY</div>
+        <div class="track">{{ d.track }} <span>{{ ownedCount }}/{{ d.tattoos.length }}</span></div>
+
+        <div class="list" ref="list">
+            <div v-for="t in reversed" :key="t.id" class="row">
+                <div class="tile" :class="{ selected: selected === t.id }" @click="select(t.id)">
+                    <svg v-if="t.owned" class="state check" viewBox="0 0 24 24"><path d="M9.5 16.2L5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z"/></svg>
+                    <svg v-else class="state lock" viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0110 0v3h1v11H6V10h1zm2 0h6V7a3 3 0 00-6 0v3z"/></svg>
+                </div>
+                <div class="threshold" :class="{ reached: d.authority >= t.threshold }">{{ t.threshold }} #</div>
+            </div>
+            <div class="bar"><div class="fill" :style="{ height: barFill + 'px' }"></div></div>
+        </div>
+
+        <div class="points">{{ d.authority }} #</div>
+
+        <div class="gender">
+            <div class="side" :class="{ active: !d.female }">
+                <svg viewBox="0 0 24 24"><path d="M10.5 3C8 3 6.5 4.8 6.5 7.4c0 1 .2 1.7.5 2.4L6 12.2l1.4.6c.1 1 .5 1.8 1.4 2.1V16c-2.3.6-4 2-4.8 4V21h12v-1c-.6-1.7-2-2.9-3.8-3.6v-1.7c1.9 0 3.3-.6 3.6-2.1l.9-.1-.3-2.4c.4-.7.6-1.5.6-2.6C17 4.8 14 3 10.5 3z"/></svg>
+            </div>
+            <div class="side" :class="{ active: d.female }">
+                <svg viewBox="0 0 24 24"><path d="M11 3C7.7 3 6 5.4 6 8.3c0 1.6.6 2.8 1.4 3.6-.3 1.3-1 2.3-2 3.1 1.5.4 3 .2 4.2-.6V16c-1.9.5-3.6 1.6-4.6 3.5V21h12v-1.5c-.9-1.7-2.4-2.8-4-3.3v-1.6c1.8-.3 3.3-1 4-2.1-1.4-.4-2-1.6-2-3.2V8.3C15 5.4 14 3 11 3z"/></svg>
+            </div>
+        </div>
+
+        <div class="detail" v-if="current">
+            <div class="name">{{ current.name }}</div>
+            <div class="desc" v-if="current.desc">{{ current.desc }}</div>
+            <div class="warn" v-if="!d.atArtist && !current.owned">Available only from the Tattoo Artist in Prison</div>
+            <div class="tattoo" v-if="!current.owned" :class="{ ready: canClaim }" @click="claim">
+                <span class="key">E</span><span class="text">TATTOO <b>{{ current.threshold }} #</b></span>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <div class="btn" @click="close"><span class="key">ESC</span>BACK</div>
+        </div>
+
+        <div class="card" v-if="card">
+            <div class="ctrack">{{ d.track }} {{ ownedCount }}/{{ d.tattoos.length }}</div>
+            <div class="cname">{{ card.name }}</div>
+            <div class="cdesc" v-if="card.desc">{{ card.desc }}</div>
+            <div class="cbtns">
+                <div class="more" v-if="nextLocked">TATTOO MORE <b>{{ nextLocked.threshold }} #</b></div>
+                <div class="great" @click="card = null"><span class="key">E</span>GREAT!</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

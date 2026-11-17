@@ -1,0 +1,46 @@
+@font-face { font-family: 'Akrobat'; src: url('fonts/Akrobat-Bold.woff'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed.otf'); font-weight: 400; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Semibold.otf'); font-weight: 600; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold.otf'); font-weight: 700; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Bold_Italic.otf'); font-weight: 700; font-style: italic; }
+@font-face { font-family: 'BerninoCond'; src: url('fonts/Bernino_Sans_Condensed_Extrabold_Italic.otf'); font-weight: 800; font-style: italic; }
+
+/* 1rem = 10px at 1080p */
+html { font-size: calc(100vh / 108); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { width: 100vw; height: 100vh; overflow: hidden; background: transparent; font-family: 'BerninoCond', sans-serif; color: #e8e8e8; }
+[v-cloak] { display: none; }
+
+/* band y 256-761 */
+.band { position: absolute; left: 0; top: 25.6rem; width: 100%; height: 50.6rem; overflow: hidden; }
+.bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+/* character art: bottom-aligned, faded at both sides so nothing reaches the boxes on the right */
+.art { position: absolute; left: 0; bottom: 0; height: 100%; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6rem, #000 90rem, transparent 97rem); }
+.title { position: absolute; left: 5.5rem; top: 5.2rem; font-size: 6.6rem; font-weight: 800; font-style: italic; color: #111; white-space: nowrap; transform: scaleX(0.7); transform-origin: left top; } /* title box 505px wide */
+.ghost { position: absolute; left: 3.6rem; top: 2.6rem; color: transparent; -webkit-text-stroke: 0.1rem rgba(0, 0, 0, 0.12); }
+
+/* right boxes x 1003-1603 */
+.box { position: absolute; left: 100.3rem; width: 60rem; background: #262722; } /* same grey as the panel behind */
+.box.head { top: 11.7rem; height: 6.5rem; padding-left: 1.9rem; display: flex; align-items: center; font-size: 2.4rem; font-weight: 700; font-style: italic; }
+.box.head .val { margin-left: 1rem; color: #c6ff39; font-style: normal; }
+.box.list { top: 19.1rem; height: 9.3rem; padding: 1.6rem 1.8rem; font-size: 1.6rem; font-weight: 600; line-height: 2.05rem; }
+.box.dev { top: 29.2rem; height: 10.4rem; padding: 1.8rem 1.6rem 0 1.6rem; border-left: 0.3rem solid #b8135f; font-size: 1.5rem; font-weight: 600; line-height: 1.95rem; color: #bdbdbd; }
+.devtitle { margin-bottom: 0.6rem; font-size: 1.7rem; font-weight: 700; font-style: italic; color: #c0186a; }
+.g { color: #b6ea3c; }
+
+.box.amount { clip-path: polygon(0 0, 100% 0, 100% 17.2rem, 57.1rem 100%, 0 100%); height: 20.5rem; padding: 0 3rem; display: flex; align-items: center; font-size: 6rem; font-weight: 700; color: #c6ff39; }
+.amount input { margin-left: 0.6rem; width: 50rem; background: transparent; border: none; outline: none; font: inherit; color: #fff; }
+
+/* bottom bar y 762-826, buttons 340x42 at x 610 / 970 */
+.bar { position: absolute; left: 0; top: 76.2rem; width: 100%; height: 6.4rem; background: #161616; }
+.btn { position: absolute; top: 1.1rem; width: 34rem; height: 4.2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; cursor: pointer; }
+.btn.cancel { left: 61rem; background: #555651; color: #d0ff70; }
+.btn.ok { left: 97rem; background: #c6ff39; color: #141414; }
+.btn.ok.off { opacity: 0.5; }
+.btn .key { position: absolute; left: 1.8rem; width: 1.6rem; height: 1.9rem; background: #9fb77d; color: #1d2a00; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+
+/* RNV UI rule: buttons and boxes get a very small radius; hover = white button, black text, smooth */
+.btn { border-radius: 0.3rem; transition: background-color 0.2s ease, color 0.2s ease; }
+.btn:not(.off):hover { background: #fff; color: #000; }
+.box { border-radius: 0.3rem; }
+.btn { font-family: 'Akrobat', sans-serif; letter-spacing: 0.05rem; }
